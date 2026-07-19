@@ -37,7 +37,8 @@ export default function Hero() {
   return (
     <section id="home" className="relative min-h-screen flex items-center pt-24 pb-16 px-6 overflow-hidden">
       <div className="absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[linear-gradient(120deg,#050505,#0a0f1f,#050505,#0a1a0f,#050505)] bg-[length:400%_400%] animate-gradient-shift" />
+        <div className="absolute inset-0 animate-gradient-shift" style={{ background: 'var(--hero-gradient)', backgroundSize: '400% 400%' }} />
+        <div className="absolute inset-0 dot-grid opacity-60" />
         <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/20 rounded-full blur-[120px]" />
         <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-light-blue/10 rounded-full blur-[120px]" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-success/5 rounded-full blur-[140px]" />

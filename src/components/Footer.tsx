@@ -12,7 +12,7 @@ const quickLinks = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 px-6 py-14 safe-bottom">
+    <footer className="footer-dark border-t border-white/10 px-6 py-14 safe-bottom">
       <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-10">
         <div>
           <a href="#home" className="flex items-center gap-2 font-bold text-xl mb-3">

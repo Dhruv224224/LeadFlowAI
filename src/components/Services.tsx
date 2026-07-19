@@ -18,7 +18,7 @@ const services = [
 export default function Services() {
   const reduce = useReducedMotion();
   return (
-    <Section id="services">
+    <Section id="services" className="section-divider">
       <div className="max-w-7xl mx-auto">
         <motion.div variants={fadeUpItem} className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">

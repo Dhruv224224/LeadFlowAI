@@ -42,7 +42,7 @@ function StepCard({ step, index }: { step: typeof workflowSteps[number]; index: 
 
 export default function WorkflowSection() {
   return (
-    <Section id="workflow">
+    <Section id="workflow" className="section-alt section-divider">
       <div className="absolute inset-0 -z-[5] opacity-50 pointer-events-none">
         <ParticleField />
       </div>

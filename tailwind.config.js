@@ -1,15 +1,19 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        bg: '#050505',
-        card: '#111111',
-        primary: '#2563EB',
-        'light-blue': '#60A5FA',
-        success: '#22C55E',
-        'text-main': '#F8FAFC',
+        bg: 'rgb(var(--color-bg) / <alpha-value>)',
+        card: 'rgb(var(--color-card) / <alpha-value>)',
+        primary: 'rgb(var(--color-primary) / <alpha-value>)',
+        'light-blue': 'rgb(var(--color-light-blue) / <alpha-value>)',
+        success: 'rgb(var(--color-success) / <alpha-value>)',
+        'text-main': 'rgb(var(--color-text-main) / <alpha-value>)',
+        surface: 'rgb(var(--color-surface) / <alpha-value>)',
+        'border-soft': 'rgb(var(--color-border-soft) / <alpha-value>)',
+        'nav-bg': 'rgb(var(--color-nav-bg) / <alpha-value>)',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
@@ -39,5 +43,9 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addVariant }) {
+      addVariant('light', '.light &');
+    },
+  ],
 };

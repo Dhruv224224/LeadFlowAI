@@ -27,6 +27,13 @@ export default function ParticleField({ className = '' }: { className?: string }
     const frameTime = 1000 / targetFPS;
     let last = performance.now();
 
+    const getColors = () => {
+      const styles = getComputedStyle(document.documentElement);
+      const particle = styles.getPropertyValue('--particle-color').trim() || 'rgba(255,255,255,0.4)';
+      const line = styles.getPropertyValue('--particle-line').trim() || 'rgba(37,99,235,0.25)';
+      return { particle, line };
+    };
+
     const resize = () => {
       const parent = canvas.parentElement;
       if (!parent) return;
@@ -59,6 +66,7 @@ export default function ParticleField({ className = '' }: { className?: string }
 
       ctx.clearRect(0, 0, w, h);
       const m = mouseRef.current;
+      const { particle: particleColor, line: lineColor } = getColors();
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
@@ -86,7 +94,7 @@ export default function ParticleField({ className = '' }: { className?: string }
 
         ctx.beginPath();
         ctx.arc(p.x, p.y, 1.4, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255,255,255,0.4)';
+        ctx.fillStyle = particleColor;
         ctx.fill();
       }
 
@@ -98,11 +106,10 @@ export default function ParticleField({ className = '' }: { className?: string }
           const dy = a.y - b.y;
           const dist = Math.hypot(dx, dy);
           if (dist < LINK_DIST) {
-            const alpha = (1 - dist / LINK_DIST) * 0.25;
             ctx.beginPath();
             ctx.moveTo(a.x, a.y);
             ctx.lineTo(b.x, b.y);
-            ctx.strokeStyle = `rgba(37,99,235,${alpha})`;
+            ctx.strokeStyle = lineColor;
             ctx.lineWidth = 1;
             ctx.stroke();
           }

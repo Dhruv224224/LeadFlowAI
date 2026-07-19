@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Menu, X, Zap } from 'lucide-react';
 import { N8N_FORM_URL } from '../config';
+import { ThemeTogglePill, ThemeToggleIcon } from './ThemeToggle';
 
 const links = [
   { label: 'Home', href: '#home' },
@@ -66,7 +67,7 @@ export default function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={reduce ? { duration: 0.01 } : { duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
-        scrolled ? 'glass shadow-lg bg-black/80 backdrop-blur-xl' : 'bg-transparent'
+        scrolled ? 'glass shadow-lg' : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center justify-between">
@@ -107,14 +108,17 @@ export default function Navbar() {
           </a>
         </div>
 
-        <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden p-2 text-text-main min-h-[44px] min-w-[44px] flex items-center justify-center"
-          aria-label="Toggle menu"
-          aria-expanded={open}
-        >
-          {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        <div className="md:hidden flex items-center gap-1">
+          <ThemeToggleIcon />
+          <button
+            onClick={() => setOpen(!open)}
+            className="p-2 text-text-main min-h-[44px] min-w-[44px] flex items-center justify-center"
+            aria-label="Toggle menu"
+            aria-expanded={open}
+          >
+            {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -139,6 +143,10 @@ export default function Navbar() {
                   {l.label}
                 </a>
               ))}
+              <div className="flex items-center justify-between min-h-[48px] py-2">
+                <span className="text-sm text-text-main/60">Theme</span>
+                <ThemeTogglePill />
+              </div>
               <a
                 href={N8N_FORM_URL}
                 target="_blank"

@@ -108,7 +108,7 @@ export default function TryWorkflow() {
                     disabled={status === 'running'}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     placeholder="John Doe"
-                    className="w-full px-4 py-3 rounded-12 bg-white/5 border border-white/10 text-text-main placeholder:text-text-main/30 focus:outline-none focus:border-primary/60 focus:bg-white/[0.07] transition-all duration-200 disabled:opacity-50 min-h-[48px]"
+                    className="input-field w-full px-4 py-3 rounded-12 disabled:opacity-50 min-h-[48px]"
                   />
                 </div>
                 <div>
@@ -119,7 +119,7 @@ export default function TryWorkflow() {
                     disabled={status === 'running'}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     placeholder="john@example.com"
-                    className="w-full px-4 py-3 rounded-12 bg-white/5 border border-white/10 text-text-main placeholder:text-text-main/30 focus:outline-none focus:border-primary/60 focus:bg-white/[0.07] transition-all duration-200 disabled:opacity-50 min-h-[48px]"
+                    className="input-field w-full px-4 py-3 rounded-12 disabled:opacity-50 min-h-[48px]"
                   />
                 </div>
                 <div>
@@ -130,7 +130,7 @@ export default function TryWorkflow() {
                     disabled={status === 'running'}
                     onChange={(e) => setForm({ ...form, phone: e.target.value })}
                     placeholder="+91 98765 43210"
-                    className="w-full px-4 py-3 rounded-12 bg-white/5 border border-white/10 text-text-main placeholder:text-text-main/30 focus:outline-none focus:border-primary/60 focus:bg-white/[0.07] transition-all duration-200 disabled:opacity-50 min-h-[48px]"
+                    className="input-field w-full px-4 py-3 rounded-12 disabled:opacity-50 min-h-[48px]"
                   />
                 </div>
 

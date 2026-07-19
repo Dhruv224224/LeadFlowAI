@@ -17,7 +17,7 @@ export default function FAQ() {
   const reduce = useReducedMotion();
 
   return (
-    <Section id="faq">
+    <Section id="faq" className="section-divider">
       <div className="max-w-3xl mx-auto">
         <motion.div variants={fadeUpItem} className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">

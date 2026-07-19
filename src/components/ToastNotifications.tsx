@@ -77,7 +77,7 @@ export default function ToastNotifications() {
                 ? { duration: 0.01 }
                 : { type: 'spring', stiffness: 300, damping: 30, duration: 0.3 }
             }
-            className="glass rounded-16 p-3.5 flex items-start gap-3 shadow-2xl pointer-events-auto relative overflow-hidden gpu"
+            className="glass rounded-16 p-3.5 flex items-start gap-3 shadow-2xl pointer-events-auto relative overflow-hidden gpu light:border-l-4 light:border-l-success"
           >
             <div
               className="absolute -left-8 -top-8 w-20 h-20 rounded-full blur-2xl opacity-30"
