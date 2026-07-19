@@ -3,6 +3,7 @@ import { Zap, ArrowRight } from 'lucide-react';
 import { N8N_FORM_URL } from '../config';
 import { Section, fadeUpItem } from './anim';
 import { workflowSteps } from './workflowSteps';
+import ParticleField from './ParticleField';
 
 function StepCard({ step, index }: { step: typeof workflowSteps[number]; index: number }) {
   return (
@@ -41,7 +42,10 @@ function StepCard({ step, index }: { step: typeof workflowSteps[number]; index: 
 export default function WorkflowSection() {
   return (
     <Section id="workflow">
-      <div className="max-w-7xl mx-auto">
+      <div className="absolute inset-0 -z-[5] opacity-50 pointer-events-none">
+        <ParticleField />
+      </div>
+      <div className="max-w-7xl mx-auto relative">
         <motion.div variants={fadeUpItem} className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight">
             The Complete{' '}

@@ -13,6 +13,8 @@ import {
 } from 'lucide-react';
 import { N8N_FORM_URL } from '../config';
 import { AnimatedCounter, staggerContainer, fadeUpItem } from './anim';
+import { useTypewriter } from './useTypewriter';
+import ParticleField from './ParticleField';
 
 const stats = [
   { value: 500, suffix: '+', label: 'Consultations' },
@@ -20,6 +22,17 @@ const stats = [
   { value: 24, suffix: 'hr', label: 'Response' },
   { value: 10, suffix: '+', label: 'Integrations' },
 ];
+
+const headingWords = [
+  'Business Automation',
+  'CRM Integration',
+  'WhatsApp Automation',
+  'Lead Management',
+  'Voice Confirmation',
+  'Workflow Engine',
+];
+
+const subtitleWords = ['HubSpot', 'WhatsApp', 'Google Calendar', 'ElevenLabs', 'Slack'];
 
 const integrations = [
   { icon: Database, name: 'HubSpot', color: '#FF7A59' },
@@ -31,6 +44,9 @@ const integrations = [
 ];
 
 export default function Hero() {
+  const headingText = useTypewriter(headingWords, 80, 40, 2000);
+  const subtitleText = useTypewriter(subtitleWords, 70, 35, 1800);
+
   return (
     <section
       id="home"
@@ -44,7 +60,12 @@ export default function Hero() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-success/5 rounded-full blur-[140px]" />
       </div>
 
-      <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      {/* Particle field */}
+      <div className="absolute inset-0 -z-[5] opacity-70">
+        <ParticleField />
+      </div>
+
+      <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center relative">
         {/* Left */}
         <motion.div
           initial="hidden"
@@ -62,22 +83,25 @@ export default function Hero() {
 
           <motion.h1
             variants={fadeUpItem}
-            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.05] tracking-tight"
+            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.05] tracking-tight min-h-[1.2em] sm:min-h-[2.4em] lg:min-h-[2.2em]"
           >
-            AI-Powered Business
-            <br />
-            Automation —{' '}
-            <span className="bg-gradient-to-r from-primary via-light-blue to-success bg-clip-text text-transparent">
-              Done For You.
+            <span className="block">AI-Powered</span>
+            <span className="bg-gradient-to-r from-primary via-light-blue to-[#A78BFA] bg-clip-text text-transparent inline-flex items-baseline">
+              {headingText}
+              <span className="ml-1 inline-block w-[3px] sm:w-[4px] h-[0.9em] bg-light-blue animate-pulse rounded-sm" />
             </span>
           </motion.h1>
 
           <motion.p
             variants={fadeUpItem}
-            className="mt-6 text-lg lg:text-xl text-text-main/70 max-w-xl mx-auto lg:mx-0 leading-relaxed"
+            className="mt-6 text-lg lg:text-xl text-text-main/70 max-w-xl mx-auto lg:mx-0 leading-relaxed min-h-[3.5em]"
           >
             From lead capture to CRM, WhatsApp confirmation, calendar scheduling, AI voice calls,
-            and email — fully automated in seconds.
+            and email — fully automated in seconds. Integrates with{' '}
+            <span className="text-light-blue font-semibold">
+              {subtitleText}
+              <span className="inline-block w-[2px] h-[1em] bg-light-blue/80 animate-pulse ml-0.5 align-middle rounded-sm" />
+            </span>
           </motion.p>
 
           <motion.div
@@ -102,10 +126,7 @@ export default function Hero() {
             </a>
           </motion.div>
 
-          <motion.div
-            variants={fadeUpItem}
-            className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6"
-          >
+          <motion.div variants={fadeUpItem} className="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6">
             {stats.map((s) => (
               <div key={s.label} className="text-center lg:text-left">
                 <div className="text-3xl lg:text-4xl font-extrabold bg-gradient-to-r from-white to-light-blue bg-clip-text text-transparent">

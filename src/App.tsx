@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import TrustBadges from './components/TrustBadges';
 import ToastNotifications from './components/ToastNotifications';
+import CursorSpotlight from './components/CursorSpotlight';
 
 const WorkflowSection = lazy(() => import('./components/WorkflowSection'));
 const TryWorkflow = lazy(() => import('./components/TryWorkflow'));
@@ -34,6 +35,7 @@ export default function App() {
         </Suspense>
       </main>
       <ToastNotifications />
+      <CursorSpotlight />
     </div>
   );
 }
