@@ -2,30 +2,39 @@ import { useEffect, useState, useCallback } from 'react';
 
 export type Theme = 'dark' | 'light';
 
+function getInitialTheme(): Theme {
+  try {
+    const stored = localStorage.getItem('leadflow-theme') as Theme | null;
+    if (stored === 'dark' || stored === 'light') return stored;
+  } catch {}
+  if (typeof window !== 'undefined') {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  return 'dark';
+}
+
 export function useTheme() {
-  const [theme, setTheme] = useState<Theme>('dark');
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
 
   useEffect(() => {
-    const current = (document.documentElement.classList.contains('light') ? 'light' : 'dark') as Theme;
-    setTheme(current);
-  }, []);
+    const root = document.documentElement;
+    root.classList.remove('dark', 'light');
+    root.classList.add(theme);
+    try {
+      localStorage.setItem('leadflow-theme', theme);
+    } catch {}
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) {
+      meta.setAttribute('content', theme === 'dark' ? '#050505' : '#f0f4ff');
+    }
+  }, [theme]);
 
   const toggle = useCallback(() => {
     setTheme((prev) => {
       const next = prev === 'dark' ? 'light' : 'dark';
       const root = document.documentElement;
-      // Add transition class for smooth color shift, remove after
       root.classList.add('theme-transition');
-      root.classList.remove('dark', 'light');
-      root.classList.add(next);
-      try {
-        localStorage.setItem('leadflow-theme', next);
-      } catch {
-        // ignore
-      }
-      const meta = document.querySelector('meta[name="theme-color"]');
-      if (meta) meta.setAttribute('content', next === 'dark' ? '#050505' : '#f0f4ff');
-      window.setTimeout(() => root.classList.remove('theme-transition'), 450);
+      window.setTimeout(() => root.classList.remove('theme-transition'), 300);
       return next;
     });
   }, []);
