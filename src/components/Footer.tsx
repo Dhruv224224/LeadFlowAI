@@ -12,7 +12,7 @@ const quickLinks = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 px-6 py-14">
+    <footer className="border-t border-white/10 px-6 py-14 safe-bottom">
       <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-10">
         <div>
           <a href="#home" className="flex items-center gap-2 font-bold text-xl mb-3">
@@ -27,7 +27,8 @@ export default function Footer() {
             href={N8N_FORM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-5 inline-flex items-center gap-2 px-5 py-2.5 rounded-12 bg-primary text-white text-sm font-semibold glow-primary hover:glow-primary-hover transition-all"
+            aria-label="Book a free consultation"
+            className="mt-5 inline-flex items-center gap-2 px-5 py-2.5 rounded-12 bg-primary text-white text-sm font-semibold glow-primary transition-all duration-200 hover:scale-[1.02] active:scale-[0.97] min-h-[44px]"
           >
             <Zap className="w-4 h-4" />
             Book Free Consultation
@@ -39,7 +40,7 @@ export default function Footer() {
           <ul className="grid grid-cols-2 gap-2">
             {quickLinks.map((l) => (
               <li key={l.href}>
-                <a href={l.href} className="text-sm text-text-main/55 hover:text-light-blue transition-colors">
+                <a href={l.href} className="link-underline text-sm text-text-main/55 hover:text-light-blue transition-colors min-h-[44px] flex items-center">
                   {l.label}
                 </a>
               </li>
@@ -55,7 +56,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
-              className="w-10 h-10 rounded-12 glass flex items-center justify-center hover:bg-primary/20 hover:text-light-blue transition-all"
+              className="w-11 h-11 rounded-12 glass flex items-center justify-center hover:bg-primary/20 hover:text-light-blue transition-all duration-200 min-h-[44px] min-w-[44px]"
             >
               <Github className="w-5 h-5" />
             </a>
@@ -64,14 +65,14 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn"
-              className="w-10 h-10 rounded-12 glass flex items-center justify-center hover:bg-primary/20 hover:text-light-blue transition-all"
+              className="w-11 h-11 rounded-12 glass flex items-center justify-center hover:bg-primary/20 hover:text-light-blue transition-all duration-200 min-h-[44px] min-w-[44px]"
             >
               <Linkedin className="w-5 h-5" />
             </a>
             <a
               href="mailto:dhruvmaheshwari18vk@gmail.com"
               aria-label="Email"
-              className="w-10 h-10 rounded-12 glass flex items-center justify-center hover:bg-primary/20 hover:text-light-blue transition-all"
+              className="w-11 h-11 rounded-12 glass flex items-center justify-center hover:bg-primary/20 hover:text-light-blue transition-all duration-200 min-h-[44px] min-w-[44px]"
             >
               <Mail className="w-5 h-5" />
             </a>

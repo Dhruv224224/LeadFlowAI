@@ -12,12 +12,20 @@ export default function ParticleField({ className = '' }: { className?: string }
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    const reduceMotion =
+      typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+
     let raf = 0;
     let particles: P[] = [];
     let w = 0;
     let h = 0;
-    const COUNT = 60;
+    const COUNT = isMobile ? 20 : 60;
     const LINK_DIST = 120;
+    const targetFPS = 60;
+    const frameTime = 1000 / targetFPS;
+    let last = performance.now();
 
     const resize = () => {
       const parent = canvas.parentElement;
@@ -42,35 +50,37 @@ export default function ParticleField({ className = '' }: { className?: string }
       }));
     };
 
-    const draw = () => {
-      ctx.clearRect(0, 0, w, h);
+    const draw = (now: number) => {
+      raf = requestAnimationFrame(draw);
+      const delta = now - last;
+      if (delta < frameTime) return;
+      last = now - (delta % frameTime);
+      const dt = Math.min(delta / frameTime, 2);
 
+      ctx.clearRect(0, 0, w, h);
       const m = mouseRef.current;
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
+        p.x += p.vx * dt;
+        p.y += p.vy * dt;
 
-        // wrap
         if (p.x < 0) p.x = w;
         if (p.x > w) p.x = 0;
         if (p.y < 0) p.y = h;
         if (p.y > h) p.y = 0;
 
-        // gentle mouse attraction
-        if (m.active) {
+        if (m.active && !isMobile) {
           const dx = m.x - p.x;
           const dy = m.y - p.y;
           const dist = Math.hypot(dx, dy);
           if (dist < 180 && dist > 0.1) {
-            const force = (180 - dist) / 180 * 0.04;
+            const force = ((180 - dist) / 180) * 0.04;
             p.vx += (dx / dist) * force;
             p.vy += (dy / dist) * force;
           }
         }
 
-        // friction to keep speeds bounded
         p.vx *= 0.99;
         p.vy *= 0.99;
 
@@ -80,7 +90,6 @@ export default function ParticleField({ className = '' }: { className?: string }
         ctx.fill();
       }
 
-      // connecting lines
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const a = particles[i];
@@ -99,8 +108,6 @@ export default function ParticleField({ className = '' }: { className?: string }
           }
         }
       }
-
-      raf = requestAnimationFrame(draw);
     };
 
     const onMove = (e: MouseEvent) => {
@@ -113,7 +120,14 @@ export default function ParticleField({ className = '' }: { className?: string }
 
     resize();
     init();
-    draw();
+
+    if (reduceMotion) {
+      // draw a single static frame
+      draw(performance.now());
+      cancelAnimationFrame(raf);
+    } else {
+      raf = requestAnimationFrame(draw);
+    }
 
     const ro = new ResizeObserver(() => {
       resize();
@@ -134,7 +148,7 @@ export default function ParticleField({ className = '' }: { className?: string }
   return (
     <canvas
       ref={canvasRef}
-      className={`absolute inset-0 w-full h-full pointer-events-none ${className}`}
+      className={`absolute inset-0 w-full h-full pointer-events-none gpu ${className}`}
       aria-hidden="true"
     />
   );

@@ -4,6 +4,9 @@ import Hero from './components/Hero';
 import TrustBadges from './components/TrustBadges';
 import ToastNotifications from './components/ToastNotifications';
 import CursorSpotlight from './components/CursorSpotlight';
+import ScrollProgress from './components/ScrollProgress';
+import BackToTop from './components/BackToTop';
+import LoadingScreen from './components/LoadingScreen';
 
 const WorkflowSection = lazy(() => import('./components/WorkflowSection'));
 const TryWorkflow = lazy(() => import('./components/TryWorkflow'));
@@ -18,11 +21,13 @@ const Footer = lazy(() => import('./components/Footer'));
 export default function App() {
   return (
     <div className="min-h-screen bg-bg text-text-main font-sans antialiased">
+      <LoadingScreen />
+      <ScrollProgress />
       <Navbar />
       <main>
         <Hero />
         <TrustBadges />
-        <Suspense fallback={<div className="h-40" />}>
+        <Suspense fallback={<div className="h-40" aria-hidden="true" />}>
           <WorkflowSection />
           <TryWorkflow />
           <HowItWorks />
@@ -35,6 +40,7 @@ export default function App() {
         </Suspense>
       </main>
       <ToastNotifications />
+      <BackToTop />
       <CursorSpotlight />
     </div>
   );

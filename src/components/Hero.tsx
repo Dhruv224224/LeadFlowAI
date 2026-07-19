@@ -1,15 +1,6 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import {
-  Zap,
-  Calendar,
-  MessageSquare,
-  Phone,
-  Mail,
-  Database,
-  Cloud,
-  Slack,
-  ArrowRight,
-  Sparkles,
+  Zap, Calendar, MessageSquare, Phone, Mail, Database, Cloud, Slack, ArrowRight, Sparkles,
 } from 'lucide-react';
 import { N8N_FORM_URL } from '../config';
 import { AnimatedCounter, staggerContainer, fadeUpItem } from './anim';
@@ -24,14 +15,9 @@ const stats = [
 ];
 
 const headingWords = [
-  'Business Automation',
-  'CRM Integration',
-  'WhatsApp Automation',
-  'Lead Management',
-  'Voice Confirmation',
-  'Workflow Engine',
+  'Business Automation', 'CRM Integration', 'WhatsApp Automation',
+  'Lead Management', 'Voice Confirmation', 'Workflow Engine',
 ];
-
 const subtitleWords = ['HubSpot', 'WhatsApp', 'Google Calendar', 'ElevenLabs', 'Slack'];
 
 const integrations = [
@@ -44,15 +30,12 @@ const integrations = [
 ];
 
 export default function Hero() {
+  const reduce = useReducedMotion();
   const headingText = useTypewriter(headingWords, 80, 40, 2000);
   const subtitleText = useTypewriter(subtitleWords, 70, 35, 1800);
 
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex items-center pt-24 pb-16 px-6 overflow-hidden"
-    >
-      {/* Animated gradient background */}
+    <section id="home" className="relative min-h-screen flex items-center pt-24 pb-16 px-6 overflow-hidden">
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-[linear-gradient(120deg,#050505,#0a0f1f,#050505,#0a1a0f,#050505)] bg-[length:400%_400%] animate-gradient-shift" />
         <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/20 rounded-full blur-[120px]" />
@@ -60,17 +43,15 @@ export default function Hero() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-success/5 rounded-full blur-[140px]" />
       </div>
 
-      {/* Particle field */}
       <div className="absolute inset-0 -z-[5] opacity-70">
         <ParticleField />
       </div>
 
       <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center relative">
-        {/* Left */}
         <motion.div
           initial="hidden"
           animate="visible"
-          variants={staggerContainer(0.12)}
+          variants={reduce ? undefined : staggerContainer(0.08)}
           className="text-center lg:text-left"
         >
           <motion.div
@@ -83,7 +64,7 @@ export default function Hero() {
 
           <motion.h1
             variants={fadeUpItem}
-            className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.05] tracking-tight min-h-[1.2em] sm:min-h-[2.4em] lg:min-h-[2.2em]"
+            className="text-[32px] sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.05] tracking-tight min-h-[2.4em] sm:min-h-[2.2em] lg:min-h-[2.2em]"
           >
             <span className="block">AI-Powered</span>
             <span className="bg-gradient-to-r from-primary via-light-blue to-[#A78BFA] bg-clip-text text-transparent inline-flex items-baseline">
@@ -94,7 +75,7 @@ export default function Hero() {
 
           <motion.p
             variants={fadeUpItem}
-            className="mt-6 text-lg lg:text-xl text-text-main/70 max-w-xl mx-auto lg:mx-0 leading-relaxed min-h-[3.5em]"
+            className="mt-6 text-base sm:text-lg lg:text-xl text-text-main/70 max-w-xl mx-auto lg:mx-0 leading-relaxed min-h-[4em] sm:min-h-[3.5em]"
           >
             From lead capture to CRM, WhatsApp confirmation, calendar scheduling, AI voice calls,
             and email — fully automated in seconds. Integrates with{' '}
@@ -112,14 +93,19 @@ export default function Hero() {
               href={N8N_FORM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-16 bg-primary text-white font-semibold glow-primary hover:glow-primary-hover transition-all duration-300 hover:-translate-y-1 animate-pulse-glow"
+              aria-label="Book a free consultation"
+              className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-16 bg-primary text-white font-semibold text-base glow-primary transition-all duration-200 hover:scale-[1.02] active:scale-[0.97] animate-pulse-glow min-h-[48px]"
             >
               <Zap className="w-5 h-5" />
               Book Free Consultation
             </a>
             <a
               href="#workflow"
-              className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-16 border border-white/15 text-text-main font-semibold hover:bg-white/5 hover:border-light-blue/50 transition-all duration-300 hover:-translate-y-1"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('workflow')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="inline-flex items-center justify-center gap-2 px-7 py-4 rounded-16 border border-white/15 text-text-main font-semibold text-base hover:bg-white/5 hover:border-light-blue/50 transition-all duration-200 hover:scale-[1.02] active:scale-[0.97] min-h-[48px]"
             >
               See The Workflow
               <ArrowRight className="w-5 h-5" />
@@ -138,14 +124,13 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
-        {/* Right - dashboard mockup */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9, x: 40 }}
           animate={{ opacity: 1, scale: 1, x: 0 }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-          className="relative"
+          transition={reduce ? { duration: 0.01 } : { duration: 0.35, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+          className="relative gpu"
         >
-          <div className="glass rounded-16 p-6 lg:p-8 relative overflow-hidden">
+          <div className="glass rounded-16 p-6 lg:p-8 relative overflow-hidden gpu">
             <div className="absolute -top-20 -right-20 w-64 h-64 bg-primary/20 rounded-full blur-3xl" />
             <div className="flex items-center justify-between mb-6 relative">
               <div className="flex items-center gap-2">
@@ -168,10 +153,10 @@ export default function Hero() {
               {integrations.map((it, i) => (
                 <motion.div
                   key={it.name}
-                  initial={{ opacity: 0, scale: 0.5 }}
+                  initial={reduce ? { opacity: 1 } : { opacity: 0, scale: 0.5 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.6 + i * 0.1, duration: 0.5 }}
-                  className="glass rounded-12 p-4 flex flex-col items-center gap-2 hover:-translate-y-1 transition-transform"
+                  transition={{ delay: 0.6 + i * 0.1, duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  className="glass rounded-12 p-4 flex flex-col items-center gap-2 gpu"
                 >
                   <it.icon className="w-6 h-6" style={{ color: it.color }} />
                   <span className="text-xs text-text-main/70">{it.name}</span>
@@ -179,7 +164,6 @@ export default function Hero() {
               ))}
             </div>
 
-            {/* Animated connecting lines */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
               <motion.line
                 x1="50%" y1="0%" x2="50%" y2="100%"

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Play, RotateCcw, CheckCircle2, Loader2, Zap, Sparkles } from 'lucide-react';
 import { N8N_FORM_URL } from '../config';
 import { Section, fadeUpItem } from './anim';
@@ -13,6 +13,7 @@ export default function TryWorkflow() {
   const [activeStep, setActiveStep] = useState(-1);
   const [completed, setCompleted] = useState<number[]>([]);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const reduce = useReducedMotion();
 
   const progress = status === 'idle' ? 0 : Math.round((completed.length / workflowSteps.length) * 100);
 
@@ -107,7 +108,7 @@ export default function TryWorkflow() {
                     disabled={status === 'running'}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     placeholder="John Doe"
-                    className="w-full px-4 py-3 rounded-12 bg-white/5 border border-white/10 text-text-main placeholder:text-text-main/30 focus:outline-none focus:border-primary/60 focus:bg-white/[0.07] transition-all disabled:opacity-50"
+                    className="w-full px-4 py-3 rounded-12 bg-white/5 border border-white/10 text-text-main placeholder:text-text-main/30 focus:outline-none focus:border-primary/60 focus:bg-white/[0.07] transition-all duration-200 disabled:opacity-50 min-h-[48px]"
                   />
                 </div>
                 <div>
@@ -118,7 +119,7 @@ export default function TryWorkflow() {
                     disabled={status === 'running'}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     placeholder="john@example.com"
-                    className="w-full px-4 py-3 rounded-12 bg-white/5 border border-white/10 text-text-main placeholder:text-text-main/30 focus:outline-none focus:border-primary/60 focus:bg-white/[0.07] transition-all disabled:opacity-50"
+                    className="w-full px-4 py-3 rounded-12 bg-white/5 border border-white/10 text-text-main placeholder:text-text-main/30 focus:outline-none focus:border-primary/60 focus:bg-white/[0.07] transition-all duration-200 disabled:opacity-50 min-h-[48px]"
                   />
                 </div>
                 <div>
@@ -129,14 +130,14 @@ export default function TryWorkflow() {
                     disabled={status === 'running'}
                     onChange={(e) => setForm({ ...form, phone: e.target.value })}
                     placeholder="+91 98765 43210"
-                    className="w-full px-4 py-3 rounded-12 bg-white/5 border border-white/10 text-text-main placeholder:text-text-main/30 focus:outline-none focus:border-primary/60 focus:bg-white/[0.07] transition-all disabled:opacity-50"
+                    className="w-full px-4 py-3 rounded-12 bg-white/5 border border-white/10 text-text-main placeholder:text-text-main/30 focus:outline-none focus:border-primary/60 focus:bg-white/[0.07] transition-all duration-200 disabled:opacity-50 min-h-[48px]"
                   />
                 </div>
 
                 <button
                   onClick={status === 'done' ? reset : runDemo}
                   disabled={!canSubmit || status === 'running'}
-                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-12 bg-primary text-white font-semibold glow-primary hover:glow-primary-hover transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:translate-y-0 min-h-[44px]"
+                  className="w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-12 bg-primary text-white font-semibold glow-primary transition-all duration-200 hover:scale-[1.02] active:scale-[0.97] disabled:opacity-40 disabled:cursor-not-allowed min-h-[48px]"
                 >
                   {status === 'running' ? (
                     <>
@@ -170,7 +171,7 @@ export default function TryWorkflow() {
                   return (
                     <div
                       key={s.n}
-                      className={`flex items-center gap-3 p-3 rounded-12 border transition-all duration-300 ${
+                      className={`flex items-center gap-3 p-3 rounded-12 border transition-all duration-200 gpu ${
                         isDone
                           ? 'bg-success/10 border-success/40'
                           : isActive
@@ -219,17 +220,17 @@ export default function TryWorkflow() {
           <AnimatePresence>
             {status === 'done' && (
               <motion.div
-                initial={{ opacity: 0, y: 20, height: 0 }}
-                animate={{ opacity: 1, y: 0, height: 'auto' }}
-                exit={{ opacity: 0, y: -20, height: 0 }}
-                transition={{ duration: 0.5 }}
+                initial={reduce ? { opacity: 0 } : { opacity: 0, y: 20, height: 0 }}
+                animate={reduce ? { opacity: 1 } : { opacity: 1, y: 0, height: 'auto' }}
+                exit={reduce ? { opacity: 0 } : { opacity: 0, y: -20, height: 0 }}
+                transition={reduce ? { duration: 0.01 } : { duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                 className="mt-8 relative"
               >
                 <div className="glass rounded-16 p-6 md:p-8 text-center border-success/30 bg-success/[0.05]">
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
-                    transition={{ type: 'spring', stiffness: 200, delay: 0.1 }}
+                    transition={reduce ? { duration: 0.01 } : { type: 'spring', stiffness: 300, damping: 30, delay: 0.1 }}
                     className="mx-auto w-14 h-14 rounded-full bg-success/20 flex items-center justify-center mb-4"
                   >
                     <CheckCircle2 className="w-8 h-8 text-success" />
@@ -242,7 +243,7 @@ export default function TryWorkflow() {
                     href={N8N_FORM_URL}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-16 bg-primary text-white font-semibold glow-primary hover:glow-primary-hover transition-all duration-300 hover:-translate-y-1 animate-pulse-glow"
+                    className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-16 bg-primary text-white font-semibold glow-primary transition-all duration-200 hover:scale-[1.02] active:scale-[0.97] animate-pulse-glow min-h-[48px]"
                   >
                     <Zap className="w-5 h-5" />
                     Book Free Consultation

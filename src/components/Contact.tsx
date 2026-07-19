@@ -14,10 +14,7 @@ export default function Contact() {
   return (
     <Section id="contact">
       <div className="max-w-3xl mx-auto">
-        <motion.div
-          variants={fadeUpItem}
-          className="glass rounded-16 p-8 md:p-12 text-center relative overflow-hidden"
-        >
+        <motion.div variants={fadeUpItem} className="glass rounded-16 p-8 md:p-12 text-center relative overflow-hidden gpu">
           <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-72 h-48 bg-primary/20 rounded-full blur-3xl" />
           <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight relative">
             Let's{' '}
@@ -48,15 +45,13 @@ export default function Contact() {
                   href={c.href}
                   target={c.href.startsWith('http') ? '_blank' : undefined}
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-4 rounded-12 bg-white/[0.03] border border-white/10 hover:border-light-blue/40 hover:bg-white/5 transition-all min-h-[44px]"
+                  aria-label={c.label}
+                  className="flex items-center gap-3 p-4 rounded-12 bg-white/[0.03] border border-white/10 hover:border-light-blue/40 hover:bg-white/5 transition-all duration-200 min-h-[48px]"
                 >
                   {inner}
                 </a>
               ) : (
-                <div
-                  key={c.label}
-                  className="flex items-center gap-3 p-4 rounded-12 bg-white/[0.03] border border-white/10"
-                >
+                <div key={c.label} className="flex items-center gap-3 p-4 rounded-12 bg-white/[0.03] border border-white/10">
                   {inner}
                 </div>
               );
@@ -67,7 +62,8 @@ export default function Contact() {
             href={N8N_FORM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-10 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-16 bg-primary text-white font-semibold glow-primary hover:glow-primary-hover transition-all duration-300 hover:-translate-y-1 animate-pulse-glow w-full sm:w-auto relative"
+            aria-label="Book a free consultation"
+            className="mt-10 inline-flex items-center justify-center gap-2 px-8 py-4 rounded-16 bg-primary text-white font-semibold glow-primary transition-all duration-200 hover:scale-[1.02] active:scale-[0.97] animate-pulse-glow w-full sm:w-auto relative min-h-[48px]"
           >
             <Zap className="w-5 h-5" />
             Book Free Consultation

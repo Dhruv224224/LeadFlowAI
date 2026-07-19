@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { X, CheckCircle2, MessageSquare, Calendar, Mic, Briefcase } from 'lucide-react';
 
 type Toast = {
@@ -30,6 +30,7 @@ function timeAgo(): string {
 
 export default function ToastNotifications() {
   const [toasts, setToasts] = useState<Toast[]>([]);
+  const reduce = useReducedMotion();
 
   const remove = useCallback((id: number) => {
     setToasts((t) => t.filter((x) => x.id !== id));
@@ -39,46 +40,44 @@ export default function ToastNotifications() {
     let id = 0;
     let timer: ReturnType<typeof setTimeout>;
 
+    const pushToast = () => {
+      const base = messages[Math.floor(Math.random() * messages.length)];
+      const toast: Toast = { ...base, id: id++, timestamp: timeAgo() };
+      setToasts((t) => [...t.slice(-2), toast]);
+      setTimeout(() => remove(toast.id), 3000);
+    };
+
     const schedule = () => {
       const delay = 8000 + Math.random() * 2000;
       timer = setTimeout(() => {
-        const base = messages[Math.floor(Math.random() * messages.length)];
-        const toast: Toast = {
-          ...base,
-          id: id++,
-          timestamp: timeAgo(),
-        };
-        setToasts((t) => [...t.slice(-2), toast]);
-        setTimeout(() => remove(toast.id), 4000);
+        pushToast();
         schedule();
       }, delay);
     };
 
-    // first toast after a short delay
     timer = setTimeout(() => {
-      const base = messages[Math.floor(Math.random() * messages.length)];
-      const toast: Toast = { ...base, id: id++, timestamp: timeAgo() };
-      setToasts((t) => [...t.slice(-2), toast]);
-      setTimeout(() => remove(toast.id), 4000);
+      pushToast();
       schedule();
     }, 3500);
 
-    return () => {
-      clearTimeout(timer);
-    };
+    return () => clearTimeout(timer);
   }, [remove]);
 
   return (
-    <div className="fixed bottom-4 left-4 z-[60] flex flex-col gap-3 pointer-events-none w-[320px] max-w-[calc(100vw-2rem)]">
+    <div className="fixed left-4 z-[60] flex flex-col gap-3 pointer-events-none w-[320px] max-w-[calc(100vw-2rem)] bottom-[80px] md:bottom-4 safe-bottom">
       <AnimatePresence>
         {toasts.map((t) => (
           <motion.div
             key={t.id}
-            initial={{ opacity: 0, x: -120, scale: 0.9 }}
+            initial={reduce ? { opacity: 0 } : { opacity: 0, x: -120, scale: 0.9 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
-            exit={{ opacity: 0, x: -120, scale: 0.9 }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="glass rounded-16 p-3.5 flex items-start gap-3 shadow-2xl pointer-events-auto relative overflow-hidden"
+            exit={reduce ? { opacity: 0 } : { opacity: 0, x: 120, scale: 0.9 }}
+            transition={
+              reduce
+                ? { duration: 0.01 }
+                : { type: 'spring', stiffness: 300, damping: 30, duration: 0.3 }
+            }
+            className="glass rounded-16 p-3.5 flex items-start gap-3 shadow-2xl pointer-events-auto relative overflow-hidden gpu"
           >
             <div
               className="absolute -left-8 -top-8 w-20 h-20 rounded-full blur-2xl opacity-30"
@@ -104,8 +103,8 @@ export default function ToastNotifications() {
             </div>
             <button
               onClick={() => remove(t.id)}
-              aria-label="Dismiss"
-              className="relative flex-shrink-0 text-text-main/30 hover:text-text-main transition-colors p-1"
+              aria-label="Dismiss notification"
+              className="relative flex-shrink-0 text-text-main/30 hover:text-text-main transition-colors p-1 min-h-[44px] min-w-[44px] flex items-center justify-center"
             >
               <X className="w-4 h-4" />
             </button>

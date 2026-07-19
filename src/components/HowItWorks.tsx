@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { MousePointerClick, Bot, BellRing, CalendarCheck } from 'lucide-react';
 import { Section, fadeUpItem } from './anim';
 
@@ -10,6 +10,7 @@ const items = [
 ];
 
 export default function HowItWorks() {
+  const reduce = useReducedMotion();
   return (
     <Section id="how-it-works">
       <div className="max-w-7xl mx-auto">
@@ -28,8 +29,8 @@ export default function HowItWorks() {
             <motion.div
               key={it.n}
               variants={fadeUpItem}
-              whileHover={{ y: -6 }}
-              className="glass rounded-16 p-7 text-center hover:glow-primary-hover transition-shadow duration-300"
+              whileHover={reduce ? undefined : { y: -6 }}
+              className="glass rounded-16 p-7 text-center gpu"
             >
               <div
                 className="mx-auto w-14 h-14 rounded-16 flex items-center justify-center mb-5"

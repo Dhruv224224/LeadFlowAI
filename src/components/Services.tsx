@@ -1,13 +1,6 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import {
-  Workflow,
-  Database,
-  MessageSquare,
-  Calendar,
-  Mic,
-  Mail,
-  Slack,
-  Briefcase,
+  Workflow, Database, MessageSquare, Calendar, Mic, Mail, Slack, Briefcase,
 } from 'lucide-react';
 import { Section, fadeUpItem } from './anim';
 
@@ -23,6 +16,7 @@ const services = [
 ];
 
 export default function Services() {
+  const reduce = useReducedMotion();
   return (
     <Section id="services">
       <div className="max-w-7xl mx-auto">
@@ -36,16 +30,16 @@ export default function Services() {
           <p className="mt-5 text-lg text-text-main/60">Everything you need to automate and scale.</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 lg:grid-cols-3 gap-6">
           {services.map((s) => (
             <motion.div
               key={s.title}
               variants={fadeUpItem}
-              whileHover={{ y: -6 }}
-              className="glass rounded-16 p-6 hover:glow-primary-hover transition-shadow duration-300 group"
+              whileHover={reduce ? undefined : { y: -6 }}
+              className="glass rounded-16 p-6 gpu"
             >
               <div
-                className="w-12 h-12 rounded-12 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
+                className="w-12 h-12 rounded-12 flex items-center justify-center mb-4"
                 style={{ backgroundColor: `${s.color}15`, border: `1px solid ${s.color}40` }}
               >
                 <s.icon className="w-6 h-6" style={{ color: s.color }} />

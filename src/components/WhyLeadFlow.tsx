@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Zap, Brain, BellRing, ShieldCheck, Cloud, CalendarClock } from 'lucide-react';
 import { Section, fadeUpItem } from './anim';
 
@@ -12,6 +12,7 @@ const features = [
 ];
 
 export default function WhyLeadFlow() {
+  const reduce = useReducedMotion();
   return (
     <Section id="why">
       <div className="max-w-7xl mx-auto">
@@ -30,8 +31,8 @@ export default function WhyLeadFlow() {
             <motion.div
               key={f.title}
               variants={fadeUpItem}
-              whileHover={{ y: -6 }}
-              className="glass rounded-16 p-7 hover:glow-primary-hover transition-shadow duration-300 flex items-start gap-4"
+              whileHover={reduce ? undefined : { y: -6 }}
+              className="glass rounded-16 p-7 flex items-start gap-4 gpu"
             >
               <div
                 className="flex-shrink-0 w-12 h-12 rounded-12 flex items-center justify-center"
