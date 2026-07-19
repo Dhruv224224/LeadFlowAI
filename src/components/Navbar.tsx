@@ -3,6 +3,7 @@ import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Menu, X, Zap } from 'lucide-react';
 import { N8N_FORM_URL } from '../config';
 import { ThemeTogglePill, ThemeToggleIcon } from './ThemeToggle';
+import { useTheme } from './useTheme';
 
 const links = [
   { label: 'Home', href: '#home' },
@@ -26,6 +27,8 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState('#home');
   const reduce = useReducedMotion();
+  const { theme, toggle } = useTheme();
+  const isDark = theme === 'dark';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -34,7 +37,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Active link via IntersectionObserver
   useEffect(() => {
     const observers: IntersectionObserver[] = [];
     const ids = links.map((l) => l.href.slice(1));
@@ -66,15 +68,27 @@ export default function Navbar() {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={reduce ? { duration: 0.01 } : { duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
+      style={{ zIndex: 9999 }}
+      className={`fixed top-0 left-0 right-0 transition-all duration-200 ${
         scrolled ? 'glass shadow-lg' : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 h-16 md:h-20 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 md:h-20 flex items-center justify-between gap-2">
+        {/* Mobile: hamburger left */}
+        <button
+          onClick={() => setOpen(!open)}
+          className="md:hidden p-2 text-text-main min-h-[44px] min-w-[44px] flex items-center justify-center flex-shrink-0"
+          aria-label="Toggle menu"
+          aria-expanded={open}
+        >
+          {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+
+        {/* Logo */}
         <a
           href="#home"
           onClick={(e) => handleNav(e, '#home')}
-          className="flex items-center gap-2 font-bold text-lg md:text-xl"
+          className="flex items-center gap-2 font-bold text-lg md:text-xl flex-shrink-0 mx-auto md:mx-0"
         >
           <span className="relative flex h-3 w-3">
             <span className="absolute inline-flex h-full w-full rounded-full bg-primary opacity-75 animate-ping" />
@@ -83,7 +97,8 @@ export default function Navbar() {
           LeadFlow <span className="text-light-blue">AI</span>
         </a>
 
-        <div className="hidden md:flex items-center gap-8">
+        {/* Desktop: nav links + toggle + CTA */}
+        <div className="hidden md:flex items-center gap-6 lg:gap-8">
           {links.map((l) => (
             <a
               key={l.href}
@@ -96,6 +111,7 @@ export default function Navbar() {
               {l.label}
             </a>
           ))}
+          <ThemeTogglePill />
           <a
             href={N8N_FORM_URL}
             target="_blank"
@@ -108,16 +124,9 @@ export default function Navbar() {
           </a>
         </div>
 
-        <div className="md:hidden flex items-center gap-1">
+        {/* Mobile: theme icon right */}
+        <div className="md:hidden flex items-center flex-shrink-0">
           <ThemeToggleIcon />
-          <button
-            onClick={() => setOpen(!open)}
-            className="p-2 text-text-main min-h-[44px] min-w-[44px] flex items-center justify-center"
-            aria-label="Toggle menu"
-            aria-expanded={open}
-          >
-            {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
         </div>
       </div>
 
@@ -130,6 +139,25 @@ export default function Navbar() {
             transition={reduce ? { duration: 0.01 } : { duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="md:hidden overflow-hidden glass border-t border-white/10"
           >
+            {/* Theme row at top of drawer */}
+            <div className="flex items-center justify-between px-6 py-3 border-b border-white/10">
+              <span className="text-sm font-medium text-text-main/60">
+                {isDark ? 'Dark Mode' : 'Light Mode'}
+              </span>
+              <button
+                onClick={toggle}
+                aria-label={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+                title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+                className="w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300"
+                style={{
+                  backgroundColor: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.08)',
+                  border: isDark ? '1px solid rgba(255,255,255,0.15)' : '1px solid #e2e8f0',
+                }}
+              >
+                {isDark ? '☀️' : '🌙'}
+              </button>
+            </div>
+
             <div className="px-6 py-4 flex flex-col gap-2">
               {links.map((l) => (
                 <a
@@ -143,10 +171,6 @@ export default function Navbar() {
                   {l.label}
                 </a>
               ))}
-              <div className="flex items-center justify-between min-h-[48px] py-2">
-                <span className="text-sm text-text-main/60">Theme</span>
-                <ThemeTogglePill />
-              </div>
               <a
                 href={N8N_FORM_URL}
                 target="_blank"
