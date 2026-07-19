@@ -75,7 +75,7 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
-  -webkit-text-size-adjust: 100%;
+  
 }
 
 body {
@@ -246,10 +246,10 @@ a:focus-visible, button:focus-visible, input:focus-visible, [role="button"]:focu
 
 /* Theme transition on toggle */
 .theme-transition * {
-  transition: background-color 400ms ease,
-              border-color 400ms ease,
-              color 300ms ease,
-              box-shadow 400ms ease !important;
+  transition: background-color 200ms ease,
+              
+              color 200ms ease,
+              box-shadow 200ms ease !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
