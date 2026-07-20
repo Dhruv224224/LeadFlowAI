@@ -23,10 +23,10 @@ export default function BackToTop() {
           transition={reduce ? { duration: 0.01 } : { type: 'spring', stiffness: 300, damping: 30 }}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           aria-label="Back to top"
-          className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full glass flex items-center justify-center text-light-blue hover:bg-primary/20 transition-colors safe-bottom"
-          style={{ marginBottom: 'env(safe-area-inset-bottom, 0px)' }}
+          className="fixed right-4 sm:right-6 z-50 w-10 h-10 sm:w-12 sm:h-12 rounded-full glass flex items-center justify-center text-light-blue hover:bg-primary/20 transition-colors safe-bottom"
+          style={{ bottom: 'calc(env(safe-area-inset-bottom, 0px) + 5.5rem)' }}
         >
-          <ArrowUp className="w-5 h-5" />
+          <ArrowUp className="w-4 h-4 sm:w-5 sm:h-5" />
         </motion.button>
       )}
     </AnimatePresence>
