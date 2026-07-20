@@ -3,7 +3,6 @@ import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Menu, X, Zap } from 'lucide-react';
 import { N8N_FORM_URL } from '../config';
 import { ThemeTogglePill, ThemeToggleIcon } from './ThemeToggle';
-import { useTheme } from './useTheme';
 
 const links = [
   { label: 'Home', href: '#home' },
@@ -27,8 +26,6 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState('#home');
   const reduce = useReducedMotion();
-  const { theme, toggle } = useTheme();
-  const isDark = theme === 'dark';
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);

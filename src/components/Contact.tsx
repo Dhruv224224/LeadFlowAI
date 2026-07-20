@@ -5,8 +5,8 @@ import { Section, fadeUpItem } from './anim';
 
 const contactItems = [
   { icon: Mail, label: 'Email', value: 'dhruvmaheshwari18vk@gmail.com', href: 'mailto:dhruvmaheshwari18vk@gmail.com' },
-  { icon: Github, label: 'GitHub', value: 'github.com/Dhruv224224', href: 'https://github.com/Dhruv224224' },
-  { icon: Linkedin, label: 'LinkedIn', value: 'linkedin.com/in/dhruvmaheshwari-cse', href: 'https://linkedin.com/in/dhruvmaheshwari-cse' },
+  { icon: Github, label: 'GitHub', value: '@Dhruv224224', href: 'https://github.com/Dhruv224224' },
+  { icon: Linkedin, label: 'LinkedIn', value: 'Dhruv Maheshwari', href: 'https://linkedin.com/in/dhruvmaheshwari-cse' },
   { icon: MapPin, label: 'Location', value: 'Gwalior, MP, India', href: null },
 ];
 
@@ -33,9 +33,9 @@ export default function Contact() {
                   <div className="w-10 h-10 rounded-12 bg-primary/15 flex items-center justify-center text-primary flex-shrink-0">
                     <c.icon className="w-5 h-5" />
                   </div>
-                  <div className="min-w-0">
+                  <div className="flex-1 min-w-0">
                     <div className="text-xs text-text-main/40 uppercase tracking-wider">{c.label}</div>
-                    <div className="text-sm text-text-main/80 truncate">{c.value}</div>
+                    <div className="text-sm text-text-main/80 break-words min-h-[20px]">{c.value}</div>
                   </div>
                 </>
               );
@@ -46,12 +46,12 @@ export default function Contact() {
                   target={c.href.startsWith('http') ? '_blank' : undefined}
                   rel="noopener noreferrer"
                   aria-label={c.label}
-                  className="flex items-center gap-3 p-4 rounded-12 bg-white/[0.03] border border-white/10 hover:border-light-blue/40 hover:bg-white/5 transition-all duration-200 min-h-[48px]"
+                  className="flex items-center gap-3 p-4 rounded-12 bg-white/[0.03] border border-white/10 hover:border-light-blue/40 hover:bg-white/5 transition-all duration-200 min-h-[64px]"
                 >
                   {inner}
                 </a>
               ) : (
-                <div key={c.label} className="flex items-center gap-3 p-4 rounded-12 bg-white/[0.03] border border-white/10">
+                <div key={c.label} className="flex items-center gap-3 p-4 rounded-12 bg-white/[0.03] border border-white/10 min-h-[64px]">
                   {inner}
                 </div>
               );
