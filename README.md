@@ -152,8 +152,6 @@ export const N8N_FORM_URL = "https://your-n8n-instance.app.n8n.cloud/form/your-f
 npm run dev
 ```
 
-5. **Open** [http://localhost:5173](http://localhost:5173)
-
 ### N8N Workflow Setup
 
 1. Import the workflow JSON from `/workflow/leadflow-ai-workflow.json`
@@ -266,12 +264,6 @@ LeadFlowAI/
 
 ---
 
-## 📄 License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
----
-
 ## 🙏 Acknowledgements
 
 - [N8N](https://n8n.io) — Workflow automation engine
@@ -284,7 +276,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 <div align="center">
 
-**Built with ❤️ by Dhruv Maheshwari**
+**Built by Dhruv Maheshwari**
 
 ⭐ Star this repo if it inspired you to build something!
 
