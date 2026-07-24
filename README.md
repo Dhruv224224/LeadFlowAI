@@ -1,14 +1,19 @@
 # 🚀 LeadFlow AI — AI-Powered Business Automation Platform
 
+<div align="center">
 
-[Live Demo](https://lead-flow-ai-azure.vercel.app)
-[Consultation Form](https://dhruv224.app.n8n.cloud/form/lead-enquiry)
-[Built with N8N](https://n8n.io)
-[Deployed on Vercel](https://vercel.com)
+![LeadFlow AI Banner](https://img.shields.io/badge/LeadFlow%20AI-Business%20Automation-2563EB?style=for-the-badge&logoColor=white)
+
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-lead--flow--ai--azure.vercel.app-22C55E?style=for-the-badge&logo=vercel&logoColor=white)](https://lead-flow-ai-azure.vercel.app)
+[![Consultation Form](https://img.shields.io/badge/Book%20Consultation-Live%20Form-F97316?style=for-the-badge&logo=n8n&logoColor=white)](https://dhruv224.app.n8n.cloud/form/lead-enquiry)
+[![Built with N8N](https://img.shields.io/badge/Powered%20by-N8N-EA4B71?style=for-the-badge&logo=n8n&logoColor=white)](https://n8n.io)
+[![Deployed on Vercel](https://img.shields.io/badge/Deployed-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com)
 
 **One form submission. 12 automated actions. Under 60 seconds.**
 
 [🌐 Live Website](https://lead-flow-ai-azure.vercel.app) · [📋 Book Consultation](https://dhruv224.app.n8n.cloud/form/lead-enquiry) · [🐛 Report Bug](https://github.com/Dhruv224224/LeadFlowAI/issues)
+
+</div>
 
 ---
 
@@ -147,6 +152,8 @@ export const N8N_FORM_URL = "https://your-n8n-instance.app.n8n.cloud/form/your-f
 npm run dev
 ```
 
+5. **Open** [http://localhost:5173](http://localhost:5173)
+
 ### N8N Workflow Setup
 
 1. Import the workflow JSON from `/workflow/leadflow-ai-workflow.json`
@@ -211,6 +218,8 @@ LeadFlowAI/
 
 ---
 
+## 📸 Screenshots
+
 ### Landing Page — Dark Mode
 > Premium dark SaaS UI with animated workflow visualization and particle background
 
@@ -249,11 +258,17 @@ LeadFlowAI/
 
 **Dhruv Maheshwari**
 
-[LinkedIn](https://www.linkedin.com/in/dhruvmaheshwari-cse)
-[GitHub](https://github.com/Dhruv224224)
-[Email](mailto:dhruvmaheshwari18vk@gmail.com)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=flat&logo=linkedin)](https://www.linkedin.com/in/dhruvmaheshwari-cse)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-181717?style=flat&logo=github)](https://github.com/Dhruv224224)
+[![Email](https://img.shields.io/badge/Email-Contact-EA4335?style=flat&logo=gmail)](mailto:dhruvmaheshwari18vk@gmail.com)
 
 > B.Tech CSE Student | Amity University, Gwalior | AI/ML Developer | Automation Engineer
+
+---
+
+## 📄 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 
@@ -267,4 +282,10 @@ LeadFlowAI/
 
 ---
 
-**Built by Dhruv Maheshwari**
+<div align="center">
+
+**Built with ❤️ by Dhruv Maheshwari**
+
+⭐ Star this repo if it inspired you to build something!
+
+</div>
