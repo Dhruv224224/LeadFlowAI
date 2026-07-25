@@ -153,8 +153,6 @@ export const N8N_FORM_URL = "https://your-n8n-instance.app.n8n.cloud/form/your-f
 npm run dev
 ```
 
-5. **Open** [http://localhost:5173](http://localhost:5173)
-
 ### N8N Workflow Setup
 
 1. Import the workflow JSON from `/workflow/leadflow-ai-workflow.json`
