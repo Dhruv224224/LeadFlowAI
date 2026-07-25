@@ -19,7 +19,7 @@
 
 ## 📖 About The Project
 
-**LeadFlow AI** is a complete AI-powered business automation system built with N8N. The moment a lead fills a consultation form, 12 automated actions fire instantly — CRM registration, WhatsApp confirmation, calendar scheduling, AI voice generation, cloud storage, email delivery, and real-time admin notifications.
+**LeadFlow AI** is a complete AI-powered business automation system built with N8N. The moment a lead fills a consultation form, 12 automated actions fire instantly — CRM registration, WhatsApp confirmation, calendar scheduling,email delivery, and real-time admin notifications.
 
 Zero manual work. Fully automated end to end.
 
@@ -42,12 +42,6 @@ Send personalized WhatsApp message via Twilio
          ↓
 Schedule Google Calendar meeting + send invite
          ↓
-Generate AI voice confirmation via ElevenLabs
-         ↓
-Upload voice recording to Google Drive
-         ↓
-Share voice recording link with lead
-         ↓
 Send professional HTML confirmation email
          ↓
 Send Slack notification to admin channel
@@ -66,8 +60,6 @@ Send admin summary email with full workflow status
 - **HubSpot CRM** — Contact auto-created with lifecycle stage, phone, email, and service tag
 - **WhatsApp Automation** — Personalized message via Twilio with lead's name and service
 - **Google Calendar** — Meeting scheduled 24 hours out with invite sent to lead's email
-- **ElevenLabs AI Voice** — Human-sounding personalized voice confirmation generated
-- **Google Drive** — Voice recording uploaded, stored, and shared automatically
 - **HTML Email** — Beautiful confirmation email with Reference ID and voice message button
 - **Slack Notifications** — Real-time admin alerts with full lead details
 - **Admin Email** — Complete workflow status report after every successful lead
@@ -81,9 +73,7 @@ Send admin summary email with full workflow status
 ### 🌐 Landing Page
 - Premium dark/light mode SaaS UI
 - Interactive workflow visualization
-- Animated ROI calculator
 - Live activity toast notifications
-- AI chatbot assistant (Aria)
 - Fully mobile responsive
 - Smooth Framer Motion animations
 
@@ -97,9 +87,7 @@ Send admin summary email with full workflow status
 | **N8N** | Workflow automation engine |
 | **HubSpot** | CRM — contact management |
 | **Twilio** | WhatsApp Business API |
-| **ElevenLabs** | AI voice generation |
 | **Google Calendar** | Meeting scheduling |
-| **Google Drive** | Voice recording storage |
 | **Gmail** | HTML email delivery |
 | **Slack** | Admin notifications |
 
@@ -124,7 +112,6 @@ Send admin summary email with full workflow status
 - N8N account (cloud or self-hosted)
 - HubSpot free account
 - Twilio account with WhatsApp sandbox
-- ElevenLabs account
 - Google account (Calendar + Drive + Gmail)
 - Slack workspace
 
@@ -158,7 +145,6 @@ npm run dev
 2. Connect all credentials:
    - HubSpot API key
    - Twilio Account SID + Auth Token
-   - ElevenLabs API key
    - Google OAuth (Calendar + Drive + Gmail)
    - Slack Bot Token
 3. Activate the workflow
@@ -269,7 +255,6 @@ LeadFlowAI/
 - [N8N](https://n8n.io) — Workflow automation engine
 - [HubSpot](https://hubspot.com) — CRM platform
 - [Twilio](https://twilio.com) — WhatsApp API
-- [ElevenLabs](https://elevenlabs.io) — AI voice generation
 - [Vercel](https://vercel.com) — Deployment platform
 
 ---
