@@ -4,12 +4,11 @@ import { Plus, Minus } from 'lucide-react';
 import { Section, fadeUpItem } from './anim';
 
 const faqs = [
-  { q: 'How quickly does the automation run after I submit the form?', a: 'The entire workflow — CRM update, WhatsApp, calendar, AI voice, email, and Slack — completes in under 60 seconds after you submit the consultation form.' },
+  { q: 'How quickly does the automation run after I submit the form?', a: 'The entire workflow — CRM update, WhatsApp, calendar, email, and Slack — completes in under 60 seconds after you submit the consultation form.' },
   { q: 'Will I receive a WhatsApp message confirmation?', a: 'Yes. A personalized WhatsApp confirmation is sent automatically via Twilio the moment your form is submitted, including your reference ID and next steps.' },
-  { q: 'How does the AI voice confirmation work?', a: 'We use ElevenLabs to generate a professional voice confirmation, upload the recording to Google Drive, and share the link with you so you can listen anytime.' },
   { q: 'Is my data secure?', a: 'Absolutely. All data is transmitted over encrypted channels, stored securely, and never shared with third parties. We follow enterprise-grade security practices.' },
   { q: 'Can I reschedule my consultation?', a: 'Yes. Simply reply to your confirmation email or WhatsApp message and our team will help you find a new time that works for you.' },
-  { q: 'What tools are integrated in this workflow?', a: 'The workflow connects HubSpot CRM, WhatsApp (Twilio), Google Calendar, ElevenLabs AI Voice, Google Drive, Gmail, and Slack — all orchestrated by n8n.' },
+  { q: 'What tools are integrated in this workflow?', a: 'The workflow connects HubSpot CRM, WhatsApp (Twilio), Google Calendar, Gmail, and Slack — all orchestrated by n8n.' },
 ];
 
 export default function FAQ() {

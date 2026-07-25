@@ -1,13 +1,11 @@
 import { motion } from 'framer-motion';
-import { Workflow, Calendar, MessageSquare, Mic, HardDrive, Slack, Mail, Database } from 'lucide-react';
+import { Workflow, Calendar, MessageSquare, Slack, Mail, Database } from 'lucide-react';
 
 const badges = [
   { name: 'n8n', icon: Workflow },
   { name: 'HubSpot', icon: Database },
   { name: 'Google Calendar', icon: Calendar },
   { name: 'WhatsApp', icon: MessageSquare },
-  { name: 'ElevenLabs', icon: Mic },
-  { name: 'Google Drive', icon: HardDrive },
   { name: 'Slack', icon: Slack },
   { name: 'Gmail', icon: Mail },
 ];

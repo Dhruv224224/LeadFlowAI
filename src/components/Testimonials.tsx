@@ -10,7 +10,7 @@ const testimonials = [
   },
   {
     initials: 'MK', name: 'Marcus Kim', role: 'Head of Growth', company: 'NorthPeak Agency',
-    text: 'The WhatsApp + AI voice combo is unreal. Clients get a personalized confirmation instantly and our team is always in the loop via Slack. Game changer.',
+    text: 'The WhatsApp + email combo is unreal. Clients get a personalized confirmation instantly and our team is always in the loop via Slack. Game changer.',
   },
   {
     initials: 'AP', name: 'Aisha Patel', role: 'Operations Lead', company: 'Lumen SaaS',

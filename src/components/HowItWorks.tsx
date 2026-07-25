@@ -5,7 +5,7 @@ import { Section, fadeUpItem } from './anim';
 const items = [
   { n: 1, icon: MousePointerClick, title: 'Submit Form', desc: 'Click Book Free Consultation and fill your details', color: '#60A5FA' },
   { n: 2, icon: Bot, title: 'AI Takes Over', desc: 'Workflow triggers instantly across all platforms', color: '#A78BFA' },
-  { n: 3, icon: BellRing, title: 'You Get Notified', desc: 'WhatsApp, email, and voice confirmation arrive', color: '#22C55E' },
+  { n: 3, icon: BellRing, title: 'You Get Notified', desc: 'WhatsApp and email confirmation arrive', color: '#22C55E' },
   { n: 4, icon: CalendarCheck, title: 'We Connect', desc: 'Meet your consultant at the scheduled time', color: '#FBBF24' },
 ];
 

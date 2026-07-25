@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import {
-  Workflow, Database, MessageSquare, Calendar, Mic, Mail, Slack, Briefcase,
+  Workflow, Database, MessageSquare, Calendar, Mail, Slack, Briefcase,
 } from 'lucide-react';
 import { Section, fadeUpItem } from './anim';
 
@@ -9,7 +9,6 @@ const services = [
   { icon: Database, title: 'CRM Integration', desc: 'Sync leads and contacts with HubSpot automatically in real time.', color: '#FF7A59' },
   { icon: MessageSquare, title: 'WhatsApp Automation', desc: 'Send personalized confirmations and updates via WhatsApp instantly.', color: '#22C55E' },
   { icon: Calendar, title: 'Google Calendar Scheduling', desc: 'Automate meeting booking with smart calendar integration.', color: '#60A5FA' },
-  { icon: Mic, title: 'AI Voice Solutions', desc: 'Professional AI-generated voice confirmations using ElevenLabs.', color: '#A78BFA' },
   { icon: Mail, title: 'Email Automation', desc: 'Beautiful HTML emails sent automatically at every workflow step.', color: '#EF4444' },
   { icon: Slack, title: 'Slack Integration', desc: 'Real-time team notifications and alerts across your channels.', color: '#F8FAFC' },
   { icon: Briefcase, title: 'Business Consulting', desc: 'Strategic guidance to map your processes into automated workflows.', color: '#FBBF24' },

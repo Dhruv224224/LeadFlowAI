@@ -55,7 +55,7 @@ export default function WorkflowSection() {
             </span>
           </h2>
           <p className="mt-5 text-lg text-text-main/60 max-w-2xl mx-auto">
-            One form submission triggers 10+ automated actions instantly.
+            One form submission triggers 9 automated actions instantly.
           </p>
         </motion.div>
 

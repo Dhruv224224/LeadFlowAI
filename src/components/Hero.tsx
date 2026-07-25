@@ -1,6 +1,6 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import {
-  Zap, Calendar, MessageSquare, Phone, Mail, Database, Cloud, Slack, ArrowRight, Sparkles,
+  Zap, Calendar, MessageSquare, Mail, Database, Cloud, Slack, ArrowRight, Sparkles,
 } from 'lucide-react';
 import { N8N_FORM_URL } from '../config';
 import { AnimatedCounter, staggerContainer, fadeUpItem } from './anim';
@@ -16,15 +16,14 @@ const stats = [
 
 const headingWords = [
   'Business Automation', 'CRM Integration', 'WhatsApp Automation',
-  'Lead Management', 'Voice Confirmation', 'Workflow Engine',
+  'Lead Management', 'Email Automation', 'Workflow Engine',
 ];
-const subtitleWords = ['HubSpot', 'WhatsApp', 'Google Calendar', 'ElevenLabs', 'Slack'];
+const subtitleWords = ['HubSpot', 'WhatsApp', 'Google Calendar', 'Gmail', 'Slack'];
 
 const integrations = [
   { icon: Database, name: 'HubSpot', color: '#FF7A59' },
   { icon: MessageSquare, name: 'WhatsApp', color: '#22C55E' },
   { icon: Calendar, name: 'Calendar', color: '#60A5FA' },
-  { icon: Phone, name: 'ElevenLabs', color: '#A78BFA' },
   { icon: Slack, name: 'Slack', color: '#F8FAFC' },
   { icon: Mail, name: 'Gmail', color: '#EF4444' },
 ];
@@ -78,7 +77,7 @@ export default function Hero() {
             variants={fadeUpItem}
             className="mt-6 text-base sm:text-lg lg:text-xl text-text-main/70 max-w-xl mx-auto lg:mx-0 leading-relaxed min-h-[4em] sm:min-h-[3.5em]"
           >
-            From lead capture to CRM, WhatsApp confirmation, calendar scheduling, AI voice calls,
+            From lead capture to CRM, WhatsApp confirmation, calendar scheduling,
             and email — fully automated in seconds. Integrates with{' '}
             <span className="text-light-blue font-semibold">
               {subtitleText}

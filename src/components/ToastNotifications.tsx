@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { X, CheckCircle2, MessageSquare, Calendar, Mic, Briefcase } from 'lucide-react';
+import { X, CheckCircle2, MessageSquare, Calendar, Briefcase } from 'lucide-react';
 
 type Toast = {
   id: number;
@@ -16,11 +16,10 @@ const messages: Omit<Toast, 'id' | 'timestamp'>[] = [
   { initials: 'RS', name: 'Rahul Sharma', message: 'just booked a consultation', icon: CheckCircle2, color: '#22C55E' },
   { initials: 'PM', name: 'Priya Mehta', message: 'WhatsApp sent — 2 mins ago', icon: MessageSquare, color: '#22C55E' },
   { initials: 'AS', name: 'Arjun Singh', message: 'Meeting scheduled', icon: Calendar, color: '#60A5FA' },
-  { initials: 'NG', name: 'Neha Gupta', message: 'AI voice generated', icon: Mic, color: '#A78BFA' },
   { initials: 'VK', name: 'Vikram Kapoor', message: 'New HubSpot contact created', icon: Briefcase, color: '#FF7A59' },
   { initials: 'AD', name: 'Ananya Desai', message: 'just booked a consultation', icon: CheckCircle2, color: '#22C55E' },
   { initials: 'RP', name: 'Rohit Patel', message: 'Slack notification delivered', icon: MessageSquare, color: '#F8FAFC' },
-  { initials: 'SK', name: 'Sneha Krishnan', message: 'AI voice generated', icon: Mic, color: '#A78BFA' },
+  { initials: 'SK', name: 'Sneha Krishnan', message: 'Email confirmation sent', icon: MessageSquare, color: '#EF4444' },
 ];
 
 function timeAgo(): string {

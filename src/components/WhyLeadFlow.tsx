@@ -4,10 +4,10 @@ import { Section, fadeUpItem } from './anim';
 
 const features = [
   { icon: Zap, title: 'Fully Automated', desc: 'No manual steps. The workflow runs end-to-end on its own.', color: '#2563EB' },
-  { icon: Brain, title: 'AI Powered', desc: 'AI voice, smart routing, and intelligent content generation.', color: '#A78BFA' },
+  { icon: Brain, title: 'AI Powered', desc: 'Smart routing and intelligent content generation.', color: '#A78BFA' },
   { icon: BellRing, title: 'Instant Notifications', desc: 'WhatsApp, email, and Slack alerts in under 60 seconds.', color: '#22C55E' },
   { icon: ShieldCheck, title: 'Secure Data', desc: 'Enterprise-grade security for every lead and customer record.', color: '#60A5FA' },
-  { icon: Cloud, title: 'Cloud Storage', desc: 'All recordings and files stored safely on Google Drive.', color: '#FBBF24' },
+  { icon: Cloud, title: 'Cloud Storage', desc: 'All files and records stored safely in the cloud.', color: '#FBBF24' },
   { icon: CalendarClock, title: 'Easy Scheduling', desc: 'Customers book a time that works — automatically.', color: '#34D399' },
 ];
 
